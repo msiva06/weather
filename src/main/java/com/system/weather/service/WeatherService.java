@@ -13,9 +13,8 @@ public class WeatherService {
     private String apikey;
 
     public float getTemperature(String zipcode){
+
         RestTemplate restTemplate = new RestTemplate();
-
-
         WeatherObject weatherObject = restTemplate.getForObject("https://api.openweathermap.org/data/2.5/weather?zip={zipcode}&units=metric&appid={apikey}",
                 WeatherObject.class, Map.of("zipcode",zipcode,"apikey",apikey));
         return weatherObject.main().temp();
